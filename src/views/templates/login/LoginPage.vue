@@ -1,14 +1,13 @@
-<template>
-    <LoginForm/>
-</template>
+<script setup>
+    // imports
+    import LoginForm from '@/views/components/login/LoginForm.vue';
 
-<script lang="ts">
-import LoginForm from '@/views/components/login/LoginForm.vue';
+    // variables
+    
 
-export default {
-    name: "LoginPage", // Renamed to avoid naming conflict
-    components: {
-        LoginForm,
-    },
-};
+    // methods
 </script>
+
+<template>
+  <LoginForm />
+</template>

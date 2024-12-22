@@ -1,18 +1,15 @@
-<template>
-    <HeaderContent/>
-    <AboutContent/>
-</template>
+<script setup>
+    // imports
+    import HeaderContent from '@/views/components/about/HeaderContent.vue';
+    import AboutContent from '@/views/components/about/MainContent.vue';
 
-<script lang="ts">
-    import HeaderContent from '@/views/components/about/HeaderContent.vue'
-    import AboutContent from '@/views/components/about/MainContent.vue'
+    // variables
+    
 
-
-export default {
-    name: "About",
-    components: {
-        HeaderContent,
-        AboutContent,
-    }
-}
+    // methods
 </script>
+
+<template>
+  <HeaderContent/>
+  <AboutContent/>
+</template>
