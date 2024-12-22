@@ -1,9 +1,21 @@
 <script setup>
+    // import
+    import { useAuthStore } from '@/stores/auth';
     import logo from '/assets/img/logo/logo.png';
+    import { onMounted } from 'vue';
+
+    // variables
     defineProps({
         toggleOffCanvasMenu: Function,
         toggleSearch: Function,
     });
+    const authStore = useAuthStore();
+
+    // methods
+    onMounted(async () => {
+       authStore.isLoggedIn = await authStore.authCheck();
+    });
+    
 </script>
 
 <template>
@@ -62,7 +74,7 @@
                             <div class="tgmenu__action d-none d-md-block">
                                 <ul class="list-wrap">
                                     <li class="search" @click="toggleSearch"><a href="javascript:void(0)"><i class="flaticon-search-1"></i></a></li>
-                                    <li class="header-btn">
+                                    <li class="header-btn" v-if="!authStore.isLoggedIn">
                                         <router-link to="/login" class="tg-border-btn">
                                             <svg preserveAspectRatio="none" viewBox="0 0 157 48" fill="none">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M131.75 2L155.75 25L131.75 47L148.75 24L131.75 2Z" fill="currentColor"></path>
@@ -73,7 +85,17 @@
                                             ~sing in
                                         </router-link>
                                     </li>
-                                    <li class="side-toggle-icon" @click="toggleOffCanvasMenu">
+                                    <li class="header-btn" v-if="authStore.isLoggedIn">
+                                        <router-link to="/login" class="tg-border-btn">
+                                            <svg preserveAspectRatio="none" viewBox="0 0 157 48" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M131.75 2L155.75 25L131.75 47L148.75 24L131.75 2Z" fill="currentColor"></path>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M25 1L1 24.5111L25 47L8 23.4889L25 1Z" fill="currentColor"></path>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M24.75 1L0.75 25L23.75 47H131.75L155.75 25L131.75 1H24.75Z" stroke="currentColor" stroke-width="1.5"></path>
+                                            </svg>
+                                            @ {{ authStore.user.name ?? 'Dummy' }}
+                                        </router-link>
+                                    </li>
+                                    <li class="side-toggle-icon" v-if="authStore.isLoggedIn" @click="toggleOffCanvasMenu">
                                         <span></span>
                                         <span></span>
                                         <span></span>

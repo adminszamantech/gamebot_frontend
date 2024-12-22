@@ -1,14 +1,13 @@
-<template>
-    <SignupForm/>
-</template>
+<script setup>
+    // imports
+    import SignupForm from '@/views/components/login/SignupForm.vue';
 
-<script lang="ts">
-import SignupForm from '@/views/components/login/SignupForm.vue';
+    // variables
+    
 
-export default {
-    name: "SignUpPage",
-    components: {
-        SignupForm,
-    },
-};
+    // methods
 </script>
+
+<template>
+  <SignupForm />
+</template>
